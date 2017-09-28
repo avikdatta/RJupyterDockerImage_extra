@@ -18,10 +18,7 @@ RUN eval "$(pyenv init -)"  \
 
 ENV R_LIBS_USER /home/$NB_USER/rlib
 
-RUN echo 'install.packages(c("glmnet", \
-                             "Hmisc", \
-                             "igraph", \
-                             "lme4", \
+RUN echo 'install.packages(c("lme4", \
                              "lubridate", \
                              "plyr", \
                              "scales"), \
