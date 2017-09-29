@@ -19,7 +19,6 @@ RUN eval "$(pyenv init -)"  \
 ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN echo 'install.packages(c("lme4", \
-                             "lubridate", \
                              "plyr", \
                              "scales"), \
                              repos="https://cloud.r-project.org/", \
