@@ -18,8 +18,7 @@ RUN eval "$(pyenv init -)"  \
 
 ENV R_LIBS_USER /home/$NB_USER/rlib
 
-RUN echo 'install.packages(c("lme4", \
-                             "plyr", \
+RUN echo 'install.packages(c("plyr", \
                              "scales"), \
                              repos="https://cloud.r-project.org/", \
                              dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
@@ -27,4 +26,4 @@ RUN echo 'install.packages(c("lme4", \
     
 RUN rm -f /home/$NB_USER/install.R*
     
-CMD ['jupyter-notebook', '--ip=0.0.0.0']
+CMD ['jupyter-notebook','--ip','0.0.0.0']
