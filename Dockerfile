@@ -19,6 +19,7 @@ RUN eval "$(pyenv init -)"  \
 ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN echo 'install.packages(c("plyr", \
+                             "lme4", \
                              "scales"), \
                              repos="https://cloud.r-project.org/", \
                              dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
