@@ -18,13 +18,9 @@ RUN eval "$(pyenv init -)"  \
 
 ENV R_LIBS_USER /home/$NB_USER/rlib
 
-RUN echo 'install.packages(c("plyr", \
-                             "lme4", \
-                             "scales"), \
-                             repos="https://cloud.r-project.org/", \
-                             dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
-    && R CMD BATCH --no-save /home/$NB_USER/install.R
+RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
+    && R CMD BATCH --no-save /home/$NB_USER/ML_for_Hackers/package_installer.R
     
-RUN rm -f /home/$NB_USER/install.R*
+RUN rm -f /home/$NB_USER/ML_for_Hackers/package_installer.R.*
     
 CMD ['jupyter-notebook','--ip','0.0.0.0']
