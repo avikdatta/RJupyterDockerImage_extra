@@ -10,9 +10,7 @@ USER root
 WORKDIR /root/
 
 RUN apt-get update \
-    && apt-get install -y \
-    && libxml2-dev \
-    && r-cran-xml
+    && apt-get install -y libxml2-dev r-cran-xml
     
 USER $NB_USER
 WORKDIR /home/$NB_USER
