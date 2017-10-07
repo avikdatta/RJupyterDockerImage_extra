@@ -8,8 +8,11 @@ ENV NB_USER vmuser
 
 USER root
 
-RUN apt-get install -y libxml2-dev \
-                    && r-cran-xml
+RUN apt-get update -y \
+    && apt-get install -y \
+    && libxml2-dev \
+    && r-cran-xml
+    
 USER $NB_USER
 WORKDIR /home/$NB_USER
 
