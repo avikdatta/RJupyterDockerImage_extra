@@ -26,5 +26,11 @@ RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
 # library(devtools)
 # slam_url <- "https://cran.r-project.org/src/contrib/Archive/slam/slam_0.1-37.tar.gz"
 # install_url(slam_url)
+#
+# Fix for xml
+# apt-get install libxml2-dev
+# apt-get install r-cran-xml
+# Fix for ipraph
+# install_github("igraph/rigraph")
 
 CMD ['jupyter-notebook','--ip','0.0.0.0']
