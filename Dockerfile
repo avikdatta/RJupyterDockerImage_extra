@@ -32,7 +32,7 @@ RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
 RUN echo "library(devtools)" > /home/$NB_USER/install.R \
     && echo "slam_url <- 'https://cloud.r-project.org/src/contrib/Archive/slam/slam_0.1-37.tar.gz'"  >> /home/$NB_USER/install.R \
     && echo "install_url(slam_url)" >> /home/$NB_USER/install.R \
-    && echo " install_github("igraph/rigraph")" >> /home/$NB_USER/install.R \
+    && echo 'install_github("igraph/rigraph")' >> /home/$NB_USER/install.R \
     && R CMD BATCH --no-save /home/$NB_USER/install.R
 
 CMD ['jupyter-notebook','--ip','0.0.0.0']
