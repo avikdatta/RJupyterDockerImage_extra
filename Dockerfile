@@ -6,6 +6,10 @@ ENTRYPOINT []
 
 ENV NB_USER vmuser
 
+USER root
+
+RUN apt-get install -y libxml2-dev \
+                    && r-cran-xml
 USER $NB_USER
 WORKDIR /home/$NB_USER
 
@@ -21,16 +25,12 @@ ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
     && sed -i 's|http://cran.stat.auckland.ac.nz/|https://cloud.r-project.org/|g' /home/$NB_USER/ML_for_Hackers/package_installer.R \
-    && echo "R CMD BATCH --no-save /home/$NB_USER/ML_for_Hackers/package_installer.R" > /home/$NB_USER/install_r.sh
-# Fix for slam
-# library(devtools)
-# slam_url <- "https://cran.r-project.org/src/contrib/Archive/slam/slam_0.1-37.tar.gz"
-# install_url(slam_url)
-#
-# Fix for xml
-# apt-get install libxml2-dev
-# apt-get install r-cran-xml
-# Fix for ipraph
-# install_github("igraph/rigraph")
+    && R CMD BATCH --no-save /home/$NB_USER/ML_for_Hackers/package_installer.R
+
+RUN echo "library(devtools) > /home/$NB_USER/install.R \
+    && echo "slam_url <- 'https://cloud.r-project.org/src/contrib/Archive/slam/slam_0.1-37.tar.gz'"  >> /home/$NB_USER/install.R \
+    && echo "install_url(slam_url)" >> /home/$NB_USER/install.R \
+    && echo " install_github("igraph/rigraph")" >> /home/$NB_USER/install.R \
+    && R CMD BATCH --no-save /home/$NB_USER/install.R
 
 CMD ['jupyter-notebook','--ip','0.0.0.0']
