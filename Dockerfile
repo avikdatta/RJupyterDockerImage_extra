@@ -7,8 +7,9 @@ ENTRYPOINT []
 ENV NB_USER vmuser
 
 USER root
+WORKDIR /root/
 
-RUN apt-get update -y \
+RUN apt-get -y update \
     && apt-get install -y \
     && libxml2-dev \
     && r-cran-xml
